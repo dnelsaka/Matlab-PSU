@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hull Lines Design Module</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="appLayout">
+      <aside class="panel leftPanel">
+        <header class="panelHeader">
+          <h1>Hull Lines Design Module</h1>
+          <p>Professional lines-plan and hydrostatics workspace</p>
+        </header>
+
+        <section class="panelSection">
+          <h2>Hull Setup</h2>
+          <div class="fieldGrid three">
+            <label>
+              Length
+              <input id="lengthInput" type="number" step="0.1" min="1" />
+            </label>
+            <label>
+              Beam
+              <input id="beamInput" type="number" step="0.1" min="0.1" />
+            </label>
+            <label>
+              Depth
+              <input id="depthInput" type="number" step="0.1" min="0.1" />
+            </label>
+          </div>
+          <div class="fieldGrid two">
+            <label>
+              Stations
+              <input id="stationsInput" type="number" min="4" max="40" step="1" />
+            </label>
+            <label>
+              Levels
+              <input id="levelsInput" type="number" min="4" max="30" step="1" />
+            </label>
+          </div>
+          <div class="buttonRow">
+            <button id="applyDimensionsBtn">Apply Dimensions</button>
+            <button id="newHullBtn">New Hull</button>
+          </div>
+        </section>
+
+        <section class="panelSection">
+          <h2>View + Fairing</h2>
+          <label>
+            View
+            <select id="viewSelect">
+              <option value="body">Body Plan</option>
+              <option value="sheer">Sheer Plan</option>
+              <option value="half">Half-Breadth Plan</option>
+              <option value="3d">3D Hull</option>
+            </select>
+          </label>
+          <div class="fieldGrid two">
+            <label>
+              Active Station
+              <input id="stationRange" type="range" min="0" max="12" value="6" />
+              <span class="smallLabel">Index: <strong id="stationValue">6</strong></span>
+            </label>
+            <label>
+              Active Level
+              <input id="levelRange" type="range" min="0" max="8" value="4" />
+              <span class="smallLabel">Index: <strong id="levelValue">4</strong></span>
+            </label>
+          </div>
+          <div class="fieldGrid two">
+            <label>
+              Editing Side
+              <select id="sideSelect">
+                <option value="starboard">Starboard</option>
+                <option value="port">Port</option>
+              </select>
+            </label>
+            <label class="inlineCheckbox">
+              <input id="symmetryToggle" type="checkbox" checked />
+              Symmetry Lock
+            </label>
+          </div>
+          <div class="fieldGrid two">
+            <label class="inlineCheckbox">
+              <input id="snapToggle" type="checkbox" />
+              Snap to Grid
+            </label>
+            <label>
+              Snap Step
+              <input id="snapStep" type="number" step="0.05" min="0.01" value="0.25" />
+            </label>
+          </div>
+          <div class="buttonRow">
+            <button id="undoBtn">Undo</button>
+            <button id="redoBtn">Redo</button>
+          </div>
+        </section>
+
+        <section class="panelSection">
+          <h2>Control Point Editor</h2>
+          <div class="fieldGrid three">
+            <label>
+              Station
+              <input id="cpStation" type="number" min="0" step="1" />
+            </label>
+            <label>
+              Level
+              <input id="cpLevel" type="number" min="0" step="1" />
+            </label>
+            <label>
+              Side
+              <select id="cpSide">
+                <option value="starboard">Starboard</option>
+                <option value="port">Port</option>
+              </select>
+            </label>
+          </div>
+          <div class="fieldGrid three">
+            <label>
+              X
+              <input id="cpX" type="number" step="0.01" />
+            </label>
+            <label>
+              Y
+              <input id="cpY" type="number" step="0.01" />
+            </label>
+            <label>
+              Z
+              <input id="cpZ" type="number" step="0.01" />
+            </label>
+          </div>
+          <button id="applyPointBtn">Apply Point Update</button>
+        </section>
+
+        <section class="panelSection">
+          <h2>3D + Slicing</h2>
+          <div class="fieldGrid two">
+            <label class="inlineCheckbox">
+              <input id="shadedToggle" type="checkbox" checked />
+              Shaded
+            </label>
+            <label class="inlineCheckbox">
+              <input id="wireframeToggle" type="checkbox" checked />
+              Wireframe
+            </label>
+          </div>
+          <div class="fieldGrid two">
+            <label class="inlineCheckbox">
+              <input id="sliceToggle" type="checkbox" />
+              Enable Section Slice
+            </label>
+            <label>
+              Slice X (%)
+              <input id="sliceRange" type="range" min="0" max="100" value="50" />
+            </label>
+          </div>
+        </section>
+
+        <section class="panelSection">
+          <h2>Hydrostatics</h2>
+          <label>
+            Draft
+            <input id="draftInput" type="number" step="0.05" min="0.01" />
+          </label>
+          <div class="hydroGrid">
+            <span>Volume</span><strong id="hydroVolume">0.000</strong>
+            <span>Displacement</span><strong id="hydroDisp">0.000</strong>
+            <span>Waterplane Area</span><strong id="hydroWaterplane">0.000</strong>
+            <span>LCB</span><strong id="hydroLCB">0.000</strong>
+            <span>VCB</span><strong id="hydroVCB">0.000</strong>
+            <span>TCB</span><strong id="hydroTCB">0.000</strong>
+          </div>
+        </section>
+
+        <section class="panelSection">
+          <h2>Import / Export</h2>
+          <label>
+            Import CSV / JSON
+            <input id="importFileInput" type="file" accept=".csv,.json" />
+          </label>
+          <div class="buttonRow">
+            <button id="exportJsonBtn">Export JSON</button>
+            <button id="exportStlBtn">Export STL</button>
+            <button id="exportIgesBtn">Export IGES-like</button>
+          </div>
+          <p class="hint">
+            CSV format: station(optional), x, z, yStarboard, yPort(optional)
+          </p>
+        </section>
+      </aside>
+
+      <main class="panel viewportPanel">
+        <canvas id="linesCanvas"></canvas>
+        <div id="threePane"></div>
+      </main>
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

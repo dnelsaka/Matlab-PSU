@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap");
+
+:root {
+  --bg-main: #e9ebea;
+  --bg-panel: #f9f8f2;
+  --bg-panel-strong: #f0eee6;
+  --ink-900: #172025;
+  --ink-700: #2b3a42;
+  --ink-500: #586772;
+  --line-soft: #c8cec8;
+  --line-strong: #9ea89f;
+  --accent: #0f6770;
+  --accent-strong: #094850;
+  --accent-warn: #a14835;
+  --shadow: 0 14px 26px rgba(30, 36, 38, 0.12);
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "IBM Plex Sans", sans-serif;
+  color: var(--ink-900);
+  background:
+    linear-gradient(145deg, rgba(38, 100, 86, 0.12), rgba(188, 171, 133, 0.08)),
+    radial-gradient(circle at 80% 8%, rgba(37, 84, 120, 0.1), transparent 46%),
+    var(--bg-main);
+}
+
+#appLayout {
+  display: grid;
+  grid-template-columns: minmax(320px, 380px) 1fr;
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+}
+
+.panel {
+  border-radius: var(--radius);
+  border: 1px solid var(--line-soft);
+  background: var(--bg-panel);
+  box-shadow: var(--shadow);
+}
+
+.leftPanel {
+  padding: 14px;
+  overflow-y: auto;
+}
+
+.panelHeader h1 {
+  margin: 0;
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+}
+
+.panelHeader p {
+  margin: 6px 0 0;
+  color: var(--ink-500);
+  font-size: 0.88rem;
+}
+
+.panelSection {
+  margin-top: 14px;
+  padding: 11px;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  background: var(--bg-panel-strong);
+}
+
+.panelSection h2 {
+  margin: 0 0 9px;
+  font-size: 0.87rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: "Space Mono", monospace;
+  color: var(--ink-700);
+}
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ink-700);
+  margin-bottom: 8px;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  margin-top: 3px;
+  font-size: 0.86rem;
+  border-radius: 7px;
+  border: 1px solid var(--line-strong);
+  padding: 7px 8px;
+  color: var(--ink-900);
+  background: #fff;
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: linear-gradient(180deg, #fbfaf5, #ebe8de);
+  transition: transform 140ms ease, background 140ms ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(180deg, #fefdf8, #e3dfd3);
+}
+
+.buttonRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.buttonRow button:nth-child(3) {
+  grid-column: 1 / -1;
+}
+
+.fieldGrid {
+  display: grid;
+  gap: 8px;
+}
+
+.fieldGrid.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.fieldGrid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.inlineCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inlineCheckbox input {
+  width: auto;
+  margin: 0;
+}
+
+.smallLabel {
+  font-size: 0.74rem;
+  color: var(--ink-500);
+}
+
+.hydroGrid {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 8px;
+  font-size: 0.82rem;
+}
+
+.hydroGrid strong {
+  font-family: "Space Mono", monospace;
+  color: var(--accent-strong);
+}
+
+.hint {
+  margin: 8px 0 0;
+  font-size: 0.74rem;
+  color: var(--ink-500);
+}
+
+.viewportPanel {
+  position: relative;
+  overflow: hidden;
+}
+
+#linesCanvas,
+#threePane {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#threePane {
+  display: none;
+}
+
+@media (max-width: 1080px) {
+  #appLayout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .leftPanel {
+    max-height: 42vh;
+  }
+
+  .fieldGrid.three,
+  .fieldGrid.two,
+  .buttonRow {
+    grid-template-columns: 1fr;
+  }
+}

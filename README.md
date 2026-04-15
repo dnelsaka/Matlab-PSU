@@ -30,7 +30,7 @@ This project was developed as a specialized Marine Engineering study at **Port S
 
 ## Live Demo
 Test the module live in your browser:  
-**[Launch Hull Design Module](https://folklorxdnelsaka.github.io/Matlab-PSU/Matlab/)**
+**[Launch Hull Design Module](https://dnelsaka.github.io/Matlab-PSU/Matlab/)**
 
 ---
 
